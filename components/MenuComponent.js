@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 function Menu(props) {
@@ -11,6 +11,7 @@ function Menu(props) {
                     title={item.name}
                     subtitle={item.description}
                     hideChevron={true}
+                    onPress={() => props.onPress(item.id)}
                     leftAvatar={{ source: require('./images/uthappizza.png')}}
                     />
             );
