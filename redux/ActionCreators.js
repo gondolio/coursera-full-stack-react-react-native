@@ -150,3 +150,18 @@ export const addLeaders = (leaders) => ({
     payload: leaders
 });
 /* LEADERS END */
+
+/* FAVORITES START */
+export const postFavorite = (dishId) => (dispatch) => {
+    // Simulating a call to server to post favorite as we are not implementing it in this course
+    setTimeout(() => {
+        dispatch(addFavorite(dishId));
+    }, 2000);
+};
+
+export const addFavorite = (dishId) => ({
+    type: ActionTypes.ADD_FAVORITE,
+    payload: dishId,
+});
+
+/* FAVORITES END */
