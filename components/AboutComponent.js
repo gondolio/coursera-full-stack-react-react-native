@@ -3,6 +3,7 @@ import { FlatList, ScrollView, Text, View } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
 
 const mapStateToProps = state => {
     return {
@@ -10,7 +11,7 @@ const mapStateToProps = state => {
     }
 };
 
-function History(props) {
+function History() {
     return(
         <Card title='Our History'>
             <Text style={{margin: 10, fontSize: 16}}>
@@ -38,13 +39,25 @@ function CorporateLeadership(props) {
                     />
             );
         };
+
+        let corporateLeaderCardBody;
+        if (props.isLoading) {
+             corporateLeaderCardBody = <Loading />
+        } 
+        else if (props.errMess) {
+            corporateLeaderCardBody = <Text>{props.errMess}</Text>
+        }
+        else {
+            corporateLeaderCardBody = <FlatList
+                data={leaders}
+                renderItem={renderLeader}
+                keyExtractor={item => item.id.toString()}
+            />                
+        }
+
         return(
             <Card title='Corporate Leadership'>
-                <FlatList
-                    data={leaders}
-                    renderItem={renderLeader}
-                    keyExtractor={item => item.id.toString()}
-                    />                
+                {corporateLeaderCardBody}
             </Card>
         );
     }
@@ -64,7 +77,11 @@ class About extends Component{
         return(
             <ScrollView>
                 <History />
-                <CorporateLeadership leaders={this.props.leaders.leaders}/>
+                <CorporateLeadership 
+                    leaders={this.props.leaders.leaders} 
+                    isLoading={this.props.leaders.isLoading}
+                    errMess={this.props.leaders.errMess}
+                    />
             </ScrollView>
         );
     };
