@@ -25,7 +25,7 @@ function RenderDish(props) {
             <Card
                 featuredTitle={dish.name}
                 image={ {uri: baseUrl + dish.image}}
-                >
+            >
                 <Text style={{margin: 10}}>
                     {dish.description}
                 </Text>
@@ -36,7 +36,7 @@ function RenderDish(props) {
                     type='font-awesome'
                     color='#f50'
                     onPress={() => props.favorite ? console.log('Already favorited') : props.onPress()}
-                    />
+                />
             </Card>
         );
     }
@@ -65,7 +65,7 @@ function RenderComments(props) {
                     data={comments}
                     renderItem={renderCommentItem}
                     keyExtractor={item => item.id.toString()}
-                    />
+                />
             </Card>
         );
     }
@@ -89,9 +89,11 @@ class Dishdetail extends Component{
 
         return(
             <ScrollView>
-                <RenderDish dish={this.props.dishes.dishes[+dishId]} 
+                <RenderDish 
+                    dish={this.props.dishes.dishes[+dishId]} 
                     favorite={this.props.favorites.some(el => el === dishId)} 
-                    onPress={() => this.markFavorite(dishId)} />
+                    onPress={() => this.markFavorite(dishId)} 
+                />
                 <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} />
             </ScrollView>
         );
