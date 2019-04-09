@@ -32,6 +32,26 @@ export const addComments = (comments) => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });
+
+export const addComment = (comment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+
+    const newComment = {
+        author: author,
+        comment: comment,
+        dishId: dishId,
+        rating: rating,
+    };
+    newComment.date = new Date().toISOString();
+
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000); // Simulating an async server call
+};
 /* COMMENTS END */
 
 /* DISHES START */
