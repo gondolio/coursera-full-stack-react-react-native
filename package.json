@@ -12,6 +12,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-datepicker": "1.7.2",
     "react-native-elements": "^1.1.0",
+    "react-native-swipeout": "2.3.3",
     "react-navigation": "2.0.1",
     "react-redux": "5.0.7",
     "redux": "4.0.0",
