@@ -4,6 +4,7 @@ import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postComment, postFavorite } from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
@@ -26,32 +27,34 @@ function RenderDish({
 }) {
     if (dish != null) {
         return(
-            <Card
-                featuredTitle={dish.name}
-                image={ {uri: baseUrl + dish.image}}
-            >
-                <Text style={{margin: 10}}>
-                    {dish.description}
-                </Text>
-                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    <Icon 
-                        raised
-                        reverse
-                        name={ favorite ? 'heart' : 'heart-o' }
-                        type='font-awesome'
-                        color='#f50'
-                        onPress={() => favorite ? console.log('Already favorited') : markFavorite()}
-                    />
-                    <Icon 
-                        raised
-                        reverse
-                        name='pencil'
-                        type='font-awesome'
-                        color='#512DA8'
-                        onPress={() => openCommentForm()}
-                    />
-                </View>
-            </Card>
+            <Animatable.View animation="fadeInDown" duration={2000}>
+                <Card
+                    featuredTitle={dish.name}
+                    image={ {uri: baseUrl + dish.image}}
+                >
+                    <Text style={{margin: 10}}>
+                        {dish.description}
+                    </Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                        <Icon 
+                            raised
+                            reverse
+                            name={ favorite ? 'heart' : 'heart-o' }
+                            type='font-awesome'
+                            color='#f50'
+                            onPress={() => favorite ? console.log('Already favorited') : markFavorite()}
+                        />
+                        <Icon 
+                            raised
+                            reverse
+                            name='pencil'
+                            type='font-awesome'
+                            color='#512DA8'
+                            onPress={() => openCommentForm()}
+                        />
+                    </View>
+                </Card>
+            </Animatable.View>
         );
     }
     else {
@@ -73,13 +76,15 @@ function RenderComments({comments}) {
     
     if (comments != null) {
         return(
-            <Card title="Comments" >
-                <FlatList
-                    data={comments}
-                    renderItem={renderCommentItem}
-                    keyExtractor={item => item.id.toString()}
-                />
-            </Card>
+            <Animatable.View animation="fadeInUp" duration={2000}>
+                <Card title="Comments" >
+                    <FlatList
+                        data={comments}
+                        renderItem={renderCommentItem}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                </Card>
+            </Animatable.View>
         );
     }
     else {

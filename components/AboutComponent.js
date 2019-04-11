@@ -4,6 +4,7 @@ import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
@@ -76,12 +77,14 @@ class About extends Component{
 
         return(
             <ScrollView>
-                <History />
-                <CorporateLeadership 
-                    leaders={this.props.leaders.leaders} 
-                    isLoading={this.props.leaders.isLoading}
-                    errMess={this.props.leaders.errMess}
+                <Animatable.View animation="fadeInDown" duration={2000}>
+                    <History />
+                    <CorporateLeadership 
+                        leaders={this.props.leaders.leaders} 
+                        isLoading={this.props.leaders.isLoading}
+                        errMess={this.props.leaders.errMess}
                     />
+                </Animatable.View>                
             </ScrollView>
         );
     };
