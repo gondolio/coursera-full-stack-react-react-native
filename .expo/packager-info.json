@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 43311,
+  "packagerPid": 5416,
   "expoServerNgrokUrl": "https://42-f66.anonymous.confusion.exp.direct",
   "packagerNgrokUrl": "https://packager.42-f66.anonymous.confusion.exp.direct",
-  "ngrokPid": 43333,
+  "ngrokPid": 5436,
   "webpackServerPort": null
 }

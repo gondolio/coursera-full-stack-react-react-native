@@ -29,6 +29,7 @@ function RenderDish({
     handleViewRef = ref => this.view = ref;
 
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
+        
         if (dx < -200)
             return true; // Right to left
         return false;
