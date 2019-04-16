@@ -49,6 +49,11 @@ function RenderDish({
     return false;
   };
 
+  const recognizeComment = ({ dx }) => {
+    if (dx > 200) return true; // Left to right
+    return false;
+  };
+
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderGrant: () => this.handleViewRef.rubberBand(1000),
@@ -70,6 +75,8 @@ function RenderDish({
           ],
           { cancelable: false },
         );
+      } else if (recognizeComment(gestureState)) {
+        openCommentForm();
       }
       return true;
     },
