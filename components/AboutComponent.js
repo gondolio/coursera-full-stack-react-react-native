@@ -3,7 +3,7 @@ import { FlatList, ScrollView, Text, View } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { Loading } from './LoadingComponent';
+import Loading from './LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
