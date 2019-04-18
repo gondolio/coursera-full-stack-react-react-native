@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable';
+import { Permissions, Notifications } from 'expo';
 
 const styles = StyleSheet.create({
   formRow: {
@@ -45,6 +46,33 @@ class Reservation extends Component {
       });
     }
 
+    static async obtainNotificationPermission() {
+      let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+      if (permission.status !== 'granted') {
+        permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+          Alert.alert('Permission not granted to show notifications');
+        }
+      }
+      return permission;
+    }
+
+    static async presentLocalNotification(date) {
+      await Reservation.obtainNotificationPermission();
+      Notifications.presentLocalNotificationAsync({
+        title: 'Your Reservation',
+        body: `Reservation for ${date} requested`,
+        ios: {
+          sound: true,
+        },
+        android: {
+          sound: true,
+          vibrate: true,
+          color: '#512DA8',
+        },
+      });
+    }
+
     constructor(props) {
       super(props);
       this.state = Reservation.defaultState();
@@ -54,8 +82,8 @@ class Reservation extends Component {
       this.setState(Reservation.defaultState());
     }
 
-    confirmReservation() {
-      // Stub for future code
+    confirmReservation(date) {
+      Reservation.presentLocalNotification(date);
       this.resetForm();
     }
 
@@ -74,7 +102,7 @@ class Reservation extends Component {
           {
             text: 'OK',
             // eslint-disable-next-line no-confusing-arrow, no-console
-            onPress: () => this.confirmReservation(),
+            onPress: () => this.confirmReservation(date),
           },
         ],
         { cancelable: false },
