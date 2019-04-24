@@ -13,6 +13,7 @@
     "react-native-animatable": "1.2.4",
     "react-native-datepicker": "1.7.2",
     "react-native-elements": "^1.1.0",
+    "react-native-root-toast": "^3.0.2",
     "react-native-swipeout": "2.3.3",
     "react-navigation": "2.0.1",
     "react-redux": "5.0.7",

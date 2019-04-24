@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Image, NetInfo, Platform, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { Image, NetInfo, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Toast from 'react-native-root-toast';
 import { Icon } from 'react-native-elements';
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
@@ -298,9 +299,9 @@ class Main extends Component {
 
         NetInfo.getConnectionInfo()
             .then((connectionInfo) => {
-                ToastAndroid.show(
+                Toast.show(
                     `Initial Network Connectivity Type: ${connectionInfo.type}, effectiveType: ${connectionInfo.effectiveType}`,
-                    ToastAndroid.LONG
+                    { duration: Toast.durations.LONG },
                 )
             });
         
@@ -314,16 +315,16 @@ class Main extends Component {
     handleConnectivityChange = (connectionInfo) => {
         switch (connectionInfo.type) {
             case 'none':
-                ToastAndroid.show('You are now offline!', ToastAndroid.LONG);
+                Toast.show('You are now offline!', { duration: Toast.durations.LONG });
                 break;
             case 'wifi':
-                ToastAndroid.show('You are now connected to WiFi!', ToastAndroid.LONG);
+                //Toast.show('You are now connected to WiFi!', { duration: Toast.durations.LONG });
                 break;
             case 'cellular':
-                ToastAndroid.show('You are now connected to Cellular!', ToastAndroid.LONG);
+                Toast.show('You are now connected to Cellular!', { duration: Toast.durations.LONG });
                 break;
             case 'unknown':
-                ToastAndroid.show('You now have an unknown connection!', ToastAndroid.LONG);
+                Toast.show('You now have an unknown connection!', { duration: Toast.durations.LONG });
                 break;
             default:
                 break;
