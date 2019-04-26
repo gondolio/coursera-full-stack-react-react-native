@@ -318,7 +318,7 @@ class Main extends Component {
                 Toast.show('You are now offline!', { duration: Toast.durations.LONG });
                 break;
             case 'wifi':
-                //Toast.show('You are now connected to WiFi!', { duration: Toast.durations.LONG });
+                Toast.show('You are now connected to WiFi!', { duration: Toast.durations.LONG });
                 break;
             case 'cellular':
                 Toast.show('You are now connected to Cellular!', { duration: Toast.durations.LONG });
